@@ -24,6 +24,7 @@ public class GUI extends javax.swing.JFrame {
         if (maConsoEnergyBDD.RequeteSQL("SELECT * FROM type_conso"))
         {
             resultSet = maConsoEnergyBDD.getResultSet();
+            
             try { 
                 while (resultSet.next()) {
                         // Recup toutes les données de la colonne Nom_Conso de la table type_conso
