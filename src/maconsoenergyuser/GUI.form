@@ -26,7 +26,7 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="46" pref="46" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -39,13 +39,13 @@
                                   <Component id="BoutonValider" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="TFQuantite" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
                                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                                               <Component id="LabelKWH" min="-2" max="-2" attributes="0"/>
                                           </Group>
+                                          <Component id="TFQuantite" min="-2" pref="70" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="LabelKWH2" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" attributes="0">
@@ -58,24 +58,24 @@
                                   <Component id="TFNomPrenom" max="32767" attributes="0"/>
                                   <Component id="TFAdresse" alignment="0" max="32767" attributes="0"/>
                                   <Component id="CBTypeConso" alignment="0" pref="195" max="32767" attributes="0"/>
-                                  <Component id="TFCodePostal" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="TFCodePostal" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <Component id="LabelCodePostal" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="LabelNomPrenom" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="LabelAdresse" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="LabelFoyer" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
-                      <Component id="LabelConsommation" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
-                      <Component id="LabelFoyer" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="LabelConsommation" min="-2" pref="122" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="71" pref="59" max="32767" attributes="0"/>
+              <EmptySpace pref="59" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -149,7 +149,13 @@
     </Component>
     <Component class="javax.swing.JLabel" name="LabelFoyer">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Foyer"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="FOYER"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TFNomPrenom">
@@ -175,7 +181,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="LabelConsommation">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Consommation"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="CONSOMMATION"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TFQuantite">

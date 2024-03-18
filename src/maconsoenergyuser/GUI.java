@@ -13,7 +13,7 @@ import java.sql.SQLException;
  */
 public class GUI extends javax.swing.JFrame {
 
-    private static String url  = "jdbc:mysql://192.168.1.119/maconsoenergy";
+    private static String url  = "jdbc:mysql://localhost/maconsoenergy";
     private static String username  = "maconsoenergy_user1";
     private static String password  = "123456+azerty";
     private BDD maConsoEnergyBDD = new BDD();
@@ -106,7 +106,7 @@ public class GUI extends javax.swing.JFrame {
         });
 
         TFAdresse.setToolTipText("");
-        TFAdresse.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        TFAdresse.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TFAdresse.setName(""); // NOI18N
         TFAdresse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,10 +114,12 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        LabelFoyer.setText("Foyer");
+        LabelFoyer.setBackground(new java.awt.Color(153, 153, 153));
+        LabelFoyer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        LabelFoyer.setText("FOYER");
 
         TFNomPrenom.setToolTipText("");
-        TFNomPrenom.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        TFNomPrenom.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TFNomPrenom.setName(""); // NOI18N
         TFNomPrenom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,10 +128,11 @@ public class GUI extends javax.swing.JFrame {
         });
 
         TFCodePostal.setToolTipText("");
-        TFCodePostal.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        TFCodePostal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TFCodePostal.setName(""); // NOI18N
 
-        LabelConsommation.setText("Consommation");
+        LabelConsommation.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        LabelConsommation.setText("CONSOMMATION");
 
         LabelEquivalence.setText("Equivalence :");
 
@@ -176,11 +179,11 @@ public class GUI extends javax.swing.JFrame {
                                     .addComponent(BoutonValider)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(TFQuantite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(14, 14, 14)
-                                                .addComponent(LabelKWH)))
-                                        .addGap(18, 18, 18)
+                                                .addComponent(LabelKWH))
+                                            .addComponent(TFQuantite, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(LabelKWH2)
                                             .addGroup(layout.createSequentialGroup()
@@ -190,17 +193,17 @@ public class GUI extends javax.swing.JFrame {
                                     .addComponent(TFNomPrenom)
                                     .addComponent(TFAdresse)
                                     .addComponent(CBTypeConso, 0, 195, Short.MAX_VALUE)
-                                    .addComponent(TFCodePostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(TFCodePostal)
+                                        .addGap(122, 122, 122))))
                             .addComponent(LabelCodePostal)
                             .addComponent(LabelNomPrenom)
-                            .addComponent(LabelAdresse)))
+                            .addComponent(LabelAdresse)
+                            .addComponent(LabelFoyer, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(LabelConsommation))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(LabelFoyer)))
-                .addGap(59, 59, Short.MAX_VALUE))
+                        .addGap(45, 45, 45)
+                        .addComponent(LabelConsommation, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
