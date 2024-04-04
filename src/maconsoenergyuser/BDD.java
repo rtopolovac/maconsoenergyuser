@@ -16,11 +16,13 @@ public class BDD {
     private Connection connection = null;
     private Statement statement = null;
     private ResultSet resultSet = null;
+    private boolean couleur = false;
         
     public boolean Connexion(String url, String username, String password) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             e.printStackTrace();
             return false;
         }

@@ -13,7 +13,7 @@ import java.sql.SQLException;
  */
 public class GUI extends javax.swing.JFrame {
 
-    private static String url  = "jdbc:mysql://192.168.1.119/maconsoenergy";
+    private static String url  = "jdbc:mysql://127.0.0.1/maconsoenergy";
     private static String username  = "maconsoenergy_user1";
     private static String password  = "123456+azerty";
     private BDD maConsoEnergyBDD = new BDD();
