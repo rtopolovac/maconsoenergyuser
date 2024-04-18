@@ -19,6 +19,7 @@ public class AppUser extends javax.swing.JFrame {
     private static String username  = "maconsoenergy_user1";
     private static String password  = "123456+azerty";
     private BDD maConsoEnergyBDD = new BDD();
+    private InformationsClient info_client = new InformationsClient();
         
     
     /**
@@ -63,9 +64,9 @@ public class AppUser extends javax.swing.JFrame {
         jList3 = new javax.swing.JList<>();
         ajouter_liste = new javax.swing.JButton();
         color = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        déconnexion = new javax.swing.JButton();
+        conso_bouton = new javax.swing.JButton();
+        compte_bouton = new javax.swing.JButton();
         info_compte = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         nom = new javax.swing.JTextField();
@@ -208,24 +209,24 @@ public class AppUser extends javax.swing.JFrame {
 
         color.setBackground(new java.awt.Color(119, 181, 254));
 
-        jButton4.setText("D");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        déconnexion.setText("D");
+        déconnexion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                déconnexionActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Conso");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        conso_bouton.setText("Conso");
+        conso_bouton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                conso_boutonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Compte");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        compte_bouton.setText("Compte");
+        compte_bouton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                compte_boutonActionPerformed(evt);
             }
         });
 
@@ -235,11 +236,11 @@ public class AppUser extends javax.swing.JFrame {
             colorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, colorLayout.createSequentialGroup()
                 .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(compte_bouton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addComponent(conso_bouton)
                 .addGap(55, 55, 55)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(déconnexion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         colorLayout.setVerticalGroup(
@@ -247,9 +248,9 @@ public class AppUser extends javax.swing.JFrame {
             .addGroup(colorLayout.createSequentialGroup()
                 .addGap(13, 13, 13)
                 .addGroup(colorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(compte_bouton)
+                    .addComponent(conso_bouton)
+                    .addComponent(déconnexion, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -542,32 +543,18 @@ public class AppUser extends javax.swing.JFrame {
         layoutM.show(getContentPane(), "Card_ajout_conso");
     }//GEN-LAST:event_ajouter_listeActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void conso_boutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conso_boutonActionPerformed
         CardLayout layoutM = (java.awt.CardLayout)getContentPane().getLayout();
         
         layoutM.show(getContentPane(), "Card_liste_conso");
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_conso_boutonActionPerformed
 
     private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PasswordActionPerformed
 
     private void nomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomActionPerformed
-        String SQLreq = "SELECT Nom_Foyer FROM foyer;";
-        
-        if(maConsoEnergyBDD.RequeteSQL(SQLreq)){
-            ResultSet resultat;
-            resultat = maConsoEnergyBDD.getResultSet();
-            String nom_foyer;
-            try{
-                nom_foyer = resultat.getNString("Nom_Foyer");
-                System.out.println(nom);
-            }
-            catch(SQLException e){
-                e.printStackTrace();
-            }
-        }
-    
+
     }//GEN-LAST:event_nomActionPerformed
 
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
@@ -578,38 +565,29 @@ public class AppUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
-    //Permet de connaitre la taille du ResultSet en déplacant le curseur et en le remettant a sa au debut pour eviter des problemes de traitements de données//
-    public static int getResultSetSize(ResultSet resultSet) throws SQLException {
-        int size = 0;
-        if (resultSet != null) {
-            resultSet.last();
-            size = resultSet.getRow();
-            resultSet.beforeFirst(); // Retourner le curseur au début
-        }
-        while (resultSet.next()){
-            size = resultSet.getInt(username);
-        }
-        return size;
-    }
+    //Permet de connaitre la taille du ResultSet en déplacant le curseur et en le remettant a sa au debut pour eviter des problemes de traitemen
     private void valider_connexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valider_connexionActionPerformed
 
-        String SQLreq = "SELECT * FROM login WHERE login LIKE '%" + login.getText() + "%' AND password LIKE '%" + Password.getText() + "%';";
+        String SQLreq = "SELECT Id_Foyer FROM login WHERE login LIKE '%" + login.getText() + "%' AND password LIKE '%" + Password.getText() + "%';";
         
         if(maConsoEnergyBDD.RequeteSQL(SQLreq)){
             
             ResultSet resultat;
             
             resultat = maConsoEnergyBDD.getResultSet();
+            int idFoyer=0;
             try{
                 System.out.println(SQLreq);
                 int longueur_table =0;
                 while (resultat.next()){
+                    idFoyer= resultat.getInt("Id_Foyer");
                     longueur_table= longueur_table+1;
                 }
                 
                 if (longueur_table == 1){
                     CardLayout layoutM = (java.awt.CardLayout) getContentPane().getLayout();
 
+                    info_client.LoginValide(idFoyer, maConsoEnergyBDD);
                     layoutM.show(getContentPane(), "Card_liste_conso");
                 }
                 else{
@@ -622,14 +600,36 @@ public class AppUser extends javax.swing.JFrame {
 
     }//GEN-LAST:event_valider_connexionActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void compte_boutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compte_boutonActionPerformed
         CardLayout layoutM = (java.awt.CardLayout)getContentPane().getLayout();
         
         layoutM.show(getContentPane(), "Card_info_compte");
-    }//GEN-LAST:event_jButton2ActionPerformed
+        String SQLreq = "SELECT * FROM foyer;";
+        
+        if(maConsoEnergyBDD.RequeteSQL(SQLreq)){
+            
+            ResultSet resultat;
+            
+            resultat = maConsoEnergyBDD.getResultSet();
+                System.out.println(SQLreq);
+                
+                nom.setText(info_client.getNom());
+                Adresse.setText(info_client.getAdresse());
+                code_postale.setText(info_client.getCodePostale());
+        } 
+        
+    }//GEN-LAST:event_compte_boutonActionPerformed
 
     private void valider_infoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valider_infoActionPerformed
         CardLayout layoutM = (java.awt.CardLayout)getContentPane().getLayout();
+        
+        // Récupere dans les champs du GUI les infos user
+        String nom_n = nom.getText();
+        String add_n = Adresse.getText();
+        String cp_n = code_postale.getText();
+        info_client.UpdateClassInfoClient(nom_n, add_n, cp_n);
+        
+        info_client.UpdateBDDInfoClient();
         
         layoutM.show(getContentPane(), "Card_liste_conso");
     }//GEN-LAST:event_valider_infoActionPerformed
@@ -640,11 +640,11 @@ public class AppUser extends javax.swing.JFrame {
         layoutM.show(getContentPane(), "Card_liste_conso");
     }//GEN-LAST:event_valider_consoActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void déconnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_déconnexionActionPerformed
         CardLayout layoutM = (java.awt.CardLayout)getContentPane().getLayout();
         
         layoutM.show(getContentPane(), "Card_connexion");
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_déconnexionActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         CardLayout layoutM = (java.awt.CardLayout)getContentPane().getLayout();
@@ -728,12 +728,12 @@ public class AppUser extends javax.swing.JFrame {
     private javax.swing.JButton ajouter_liste;
     private javax.swing.JTextField code_postale;
     private javax.swing.JPanel color;
+    private javax.swing.JButton compte_bouton;
     private javax.swing.JPanel connexion;
+    private javax.swing.JButton conso_bouton;
+    private javax.swing.JButton déconnexion;
     private javax.swing.JPanel info_compte;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
