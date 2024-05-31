@@ -36,6 +36,23 @@ public class AppUser extends javax.swing.JFrame {
             panel.setBackground(Color.GREEN);
         }
     }
+    
+    private void initComboBoxTypeConso()
+    {
+        ResultSet resultSet;
+        if (maConsoEnergyBDD.RequeteSQL("SELECT * FROM type_conso"))
+        {
+            resultSet = maConsoEnergyBDD.getResultSet();
+            try { 
+                while (resultSet.next()) {
+                        // Recup toutes les données de la colonne Nom_Conso de la table type_conso
+                        jComboBox2.addItem(resultSet.getString("Nom_Conso"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,7 +98,7 @@ public class AppUser extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         ajout_conso = new javax.swing.JPanel();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jTextField7 = new javax.swing.JTextField();
+        quantite = new javax.swing.JTextField();
         valider_conso = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -429,10 +446,10 @@ public class AppUser extends javax.swing.JFrame {
             }
         });
 
-        jTextField7.setText("Quantité");
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        quantite.setText("Quantité");
+        quantite.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                quantiteActionPerformed(evt);
             }
         });
 
@@ -509,7 +526,7 @@ public class AppUser extends javax.swing.JFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(quantite, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(ajout_consoLayout.createSequentialGroup()
                         .addGap(93, 93, 93)
                         .addComponent(valider_conso)))
@@ -526,7 +543,7 @@ public class AppUser extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(quantite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(valider_conso)
                 .addContainerGap(99, Short.MAX_VALUE))
@@ -538,6 +555,7 @@ public class AppUser extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ajouter_listeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouter_listeActionPerformed
+        initComboBoxTypeConso();
         CardLayout layoutM = (java.awt.CardLayout)getContentPane().getLayout();
         
         layoutM.show(getContentPane(), "Card_ajout_conso");
@@ -557,9 +575,9 @@ public class AppUser extends javax.swing.JFrame {
 
     }//GEN-LAST:event_nomActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void quantiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantiteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_quantiteActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
@@ -621,6 +639,7 @@ public class AppUser extends javax.swing.JFrame {
     }//GEN-LAST:event_compte_boutonActionPerformed
 
     private void valider_infoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valider_infoActionPerformed
+        
         CardLayout layoutM = (java.awt.CardLayout)getContentPane().getLayout();
         
         // Récupere dans les champs du GUI les infos user
@@ -635,6 +654,14 @@ public class AppUser extends javax.swing.JFrame {
     }//GEN-LAST:event_valider_infoActionPerformed
 
     private void valider_consoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valider_consoActionPerformed
+        
+        int n_quantite = quantite.;
+        int n_id_type_conso = id_type_conso.;
+        int n_id_foyer = id_foyer.get;
+        
+        info_client.InsertClassQuantiteCLient(n_quantite, n_id_type_conso, n_id_foyer);
+        info_client.InsertQuantiteClient();
+        
         CardLayout layoutM = (java.awt.CardLayout)getContentPane().getLayout();
         
         layoutM.show(getContentPane(), "Card_liste_conso");
@@ -757,11 +784,11 @@ public class AppUser extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JPanel liste_conso;
     private javax.swing.JTextField login;
     private javax.swing.JTextField nom;
     private javax.swing.JPanel panel;
+    private javax.swing.JTextField quantite;
     private javax.swing.JButton valider_connexion;
     private javax.swing.JButton valider_conso;
     private javax.swing.JButton valider_info;

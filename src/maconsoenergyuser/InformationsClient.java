@@ -17,6 +17,8 @@ public class InformationsClient {
     private String adresse;
     private String code_postale;
     private int id_foyer;
+    private int quantite;
+    private int id_type_conso;
     private BDD maConsoEnergyBDD;
     
     public void setNom(String n_nom){ nom = n_nom; }
@@ -60,10 +62,33 @@ public class InformationsClient {
         setAdresse(adresse);
         setCodePostale(code_postale);
     }
+    
     public void UpdateBDDInfoClient(){
         String SQLreq = "UPDATE foyer SET Adresse = '"+ adresse +"', Nom_Foyer = '"+ nom +"', code_postal = '"+ code_postale +"' WHERE Id_Foyer = "+id_foyer+";";
         
         maConsoEnergyBDD.UpdateSQL(SQLreq);
     
+    }
+    
+    
+    public void setQuantite(int n_quantite ){ quantite = n_quantite; }
+    public int getQuantite(){ return quantite;  }
+    
+    public void setIdTypeConso(int n_id_type_conso){ id_type_conso = n_id_type_conso; }
+    public int getIdTypeConso(){ return id_type_conso;  }
+    
+    public void setIdFoyer(int n_id_foyer){ id_foyer = n_id_foyer; }
+    public int getIdFoyer(){ return id_foyer;  }
+    
+    public void InsertClassQuantiteCLient(int quantite, int id_type_conso){
+            setQuantite(quantite);
+            setIdTypeConso(id_type_conso);
+            setIdFoyer(id_foyer);
+            }
+    
+    public void InsertQuantiteClient(){
+        String SQLreq = "INSERT INTO consommation (Quantite_KWH, Id_Type_Conso, Id_Foyer) VALUES ('"+quantite+"', '"+id_type_conso+"', '"+id_foyer+"')";
+        
+        maConsoEnergyBDD.UpdateSQL(SQLreq);
     }
 }
