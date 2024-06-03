@@ -80,10 +80,10 @@ public class InformationsClient {
     public void setIdFoyer(int n_id_foyer){ id_foyer = n_id_foyer; }
     public int getIdFoyer(){ return id_foyer;  }
     
-    public void InsertClassQuantiteCLient(int quantite, int id_type_conso){
+    public void InsertClassQuantiteCLient(int quantite, int type_conso, int foyer){
             setQuantite(quantite);
-            setIdTypeConso(id_type_conso);
-            setIdFoyer(id_foyer);
+            setIdTypeConso(type_conso);
+            setIdFoyer(foyer);
             }
     
     public void InsertQuantiteClient(){

@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.*;
 import java.sql.ResultSet;
+import java.util.HashMap;
 
 /**
  *
@@ -18,6 +19,7 @@ public class AppUser extends javax.swing.JFrame {
     private static String url  = "jdbc:mysql://127.0.0.1/maconsoenergy";
     private static String username  = "maconsoenergy_user1";
     private static String password  = "123456+azerty";
+    private HashMap<String, Integer> typeConsoMap = new HashMap<>();
     private BDD maConsoEnergyBDD = new BDD();
     private InformationsClient info_client = new InformationsClient();
         
@@ -47,6 +49,9 @@ public class AppUser extends javax.swing.JFrame {
                 while (resultSet.next()) {
                         // Recup toutes les données de la colonne Nom_Conso de la table type_conso
                         jComboBox2.addItem(resultSet.getString("Nom_Conso"));
+                        
+                        // Associe l'Item à la clé du type de conso
+                        typeConsoMap.put(resultSet.getString("Nom_Conso"), resultSet.getInt("Id_Type_Conso"));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -439,7 +444,6 @@ public class AppUser extends javax.swing.JFrame {
 
         ajout_conso.setBackground(new java.awt.Color(61, 85, 134));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -655,9 +659,9 @@ public class AppUser extends javax.swing.JFrame {
 
     private void valider_consoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valider_consoActionPerformed
         
-        int n_quantite = quantite.;
-        int n_id_type_conso = id_type_conso.;
-        int n_id_foyer = id_foyer.get;
+        int n_quantite = Integer.valueOf(quantite.getText());
+        int n_id_type_conso = typeConsoMap.get(jComboBox2.getSelectedItem().toString());
+        int n_id_foyer = info_client.getIdFoyer();
         
         info_client.InsertClassQuantiteCLient(n_quantite, n_id_type_conso, n_id_foyer);
         info_client.InsertQuantiteClient();
