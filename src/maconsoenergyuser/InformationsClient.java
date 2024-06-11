@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.*;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -90,5 +92,22 @@ public class InformationsClient {
         String SQLreq = "INSERT INTO consommation (Quantite_KWH, Id_Type_Conso, Id_Foyer) VALUES ('"+quantite+"', '"+id_type_conso+"', '"+id_foyer+"')";
         
         maConsoEnergyBDD.UpdateSQL(SQLreq);
+    }
+    
+    public List<String[]> GetinformationsQuantite() {
+        List<String[]> data = new ArrayList<>();
+        try {
+                ResultSet table = maConsoEnergyBDD.getResultSet();
+
+                while (table.next()) {
+                    String id = table.getString("id");
+                    String quantity = table.getString("Quantite_KWH");
+                    String Id_Type_Conso = table.getString("Id_Type_Conso");
+                    data.add(new String[]{id, quantity, Id_Type_Conso});
+                }
+                System.out.println("récupération réussi");
+            } catch (SQLException e) {
+            }
+        return data;
     }
 }

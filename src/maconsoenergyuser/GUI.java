@@ -6,7 +6,8 @@ package maconsoenergyuser;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author l.limousin
@@ -17,6 +18,7 @@ public class GUI extends javax.swing.JFrame {
     private static String username  = "maconsoenergy_user1";
     private static String password  = "123456+azerty";
     private BDD maConsoEnergyBDD = new BDD();
+    private static InformationsClient info_client = new InformationsClient();
         
     private void initComboBoxTypeConso()
     {
@@ -66,6 +68,7 @@ public class GUI extends javax.swing.JFrame {
             System.exit(99);
         
         initComboBoxTypeConso();
+        info_client.GetinformationsQuantite();
     }
 
     /**
